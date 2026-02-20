@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vignesh Raveendran | Diamond Data Architect</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@200;800&family=JetBrains+Mono:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --diamond-blue: #00e5ff;
+            --diamond-purple: #7000ff;
+            --bg: #020202;
+            --text: #ffffff;
+            --mono: 'JetBrains Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Bricolage Grotesque', sans-serif; overflow-x: hidden; cursor: crosshair; }
+
+        .mesh-gradient {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: 
+                radial-gradient(at 0% 0%, rgba(0, 229, 255, 0.12) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(112, 0, 255, 0.12) 0px, transparent 50%);
+            z-index: -1; filter: blur(80px);
+        }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 5vw; }
+
+        /* Loader System Log */
+        #loader {
+            position: fixed; inset: 0; background: #000; z-index: 9999;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--mono); color: var(--diamond-blue); padding: 2rem;
+        }
+
+        /* Nav Header */
+        nav {
+            height: 100px; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo-box {
+            background: linear-gradient(45deg, var(--diamond-blue), var(--diamond-purple));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            font-weight: 800; font-size: 1.5rem;
+        }
+
+        .social-nav a {
+            color: var(--text); margin-left: 20px; font-size: 1.2rem; transition: 0.3s;
+        }
+        .social-nav a:hover { color: var(--diamond-blue); }
+
+        /* Hero Section */
+        .hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; }
+        .hero-label { font-family: var(--mono); font-size: 0.8rem; color: var(--diamond-blue); margin-bottom: 1rem; letter-spacing: 2px; }
+        .hero h1 { font-size: clamp(3rem, 10vw, 8rem); font-weight: 800; line-height: 0.9; letter-spacing: -4px; margin-bottom: 2rem; }
+        
+        .hero-flex { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; flex-wrap: wrap; }
+
+        /* Custom Graphic: Data Stream */
+        .data-visualizer {
+            height: 150px; width: 100%; background: rgba(0,0,0,0.3); border-radius: 20px; 
+            overflow: hidden; position: relative; margin-top: 1rem; border: 1px solid rgba(255,255,255,0.05);
+        }
+        .stream-line {
+            position: absolute; height: 2px; background: linear-gradient(90deg, transparent, var(--diamond-blue)); 
+            width: 100%; animation: stream 2s linear infinite;
+        }
+        @keyframes stream { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+
+        /* Bento Grid Architecture */
+        .grid-master { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin: 5rem 0; }
+        .card {
+            background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);
+            padding: 2.5rem; border-radius: 30px; position: relative; overflow: hidden;
+            transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .card:hover { background: rgba(255,255,255,0.04); border-color: var(--diamond-blue); transform: translateY(-5px); }
+        .card h2 { font-size: 2.2rem; margin-bottom: 1rem; }
+        .card h3 { font-family: var(--mono); color: var(--diamond-blue); font-size: 0.9rem; margin-bottom: 0.5rem; text-transform: uppercase; }
+
+        .span-3 { grid-column: span 3; }
+        .span-2 { grid-column: span 2; }
+
+        /* Skills Marquee */
+        .skills-infinite {
+            background: var(--diamond-blue); color: #000; padding: 0.8rem 0;
+            font-weight: 800; text-transform: uppercase; font-size: 1.1rem;
+            overflow: hidden; white-space: nowrap; display: flex; margin: 4rem -5vw;
+        }
+        .scroll-text { animation: scroll 25s linear infinite; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* Sections */
+        .section-header { font-size: 3rem; font-weight: 800; margin-bottom: 3rem; border-left: 5px solid var(--diamond-blue); padding-left: 20px; }
+        
+        .exp-row {
+            padding: 2.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: grid; grid-template-columns: 1fr 2fr 1fr; align-items: center; transition: 0.3s;
+        }
+        .exp-row:hover { background: rgba(255,255,255,0.02); padding-left: 20px; }
+
+        /* Contact Section */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin: 10rem 0; }
+        input, textarea {
+            width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); 
+            padding: 1.5rem; color: white; border-radius: 15px; margin-bottom: 1rem; font-family: var(--mono);
+        }
+        input:focus, textarea:focus { outline: none; border-color: var(--diamond-blue); }
+        .submit-btn {
+            background: var(--diamond-blue); color: black; border: none; padding: 1.5rem 3rem; 
+            border-radius: 50px; font-weight: 800; cursor: pointer; text-transform: uppercase; transition: 0.3s;
+        }
+        .submit-btn:hover { box-shadow: 0 0 30px var(--diamond-blue); transform: scale(1.05); }
+
+        .project-tag {
+            display: inline-block; padding: 4px 12px; border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50px; font-size: 0.7rem; font-family: var(--mono); margin-right: 8px; margin-top: 10px;
+        }
+
+        footer { padding: 5rem 0; text-align: center; opacity: 0.4; font-family: var(--mono); font-size: 0.8rem; }
+
+        @media (max-width: 900px) {
+            .grid-master, .contact-grid { grid-template-columns: 1fr; }
+            .span-3, .span-2 { grid-column: span 1; }
+            .exp-row { grid-template-columns: 1fr; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loader">
+        <div id="log">VIGNESH_RAVEENDRAN_INITIALIZING...</div>
+    </div>
+
+    <div class="mesh-gradient"></div>
+
+    <div class="container">
+        <nav>
+            <div class="logo-box">VR_ARCHITECT</div>
+            <div class="social-nav">
+                <a href="https://linkedin.com/in/vignesh-raveendran" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/vignesh-raveendran" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+        </nav>
+
+        <section class="hero">
+            <div class="hero-label">DATA_ENGINEERING_CORE_v2.0</div>
+            <h1 data-aos="fade-up">VIGNESH <br> RAVEENDRAN</h1>
+            <div class="hero-flex">
+                <p style="max-width: 500px; opacity: 0.7; font-size: 1.3rem;">
+                    Solving high-scale data problems with 2 years of pure IT experience. I architect resilient pipelines that bridge the gap between raw data and business intelligence.
+                </p>
+                <div style="font-family: var(--mono); text-align: right; color: var(--diamond-blue);">
+                    <div>LOCATION: GLOBAL / REMOTE</div>
+                    <div>STATUS: AVAILABLE_FOR_IMPACT</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="grid-master">
+            <div class="card span-3" data-aos="fade-right">
+                <h3>01 / Executive Summary</h3>
+                <h2>Precision in Data Engineering.</h2>
+                <div class="data-visualizer" id="stream-container"></div>
+                <p style="margin-top: 1.5rem; opacity: 0.7;">Experienced professional with a 2-year foundation in IT systems. Specializing in the development, optimization, and scaling of automated ETL workflows and robust data architectures.</p>
+            </div>
+            
+            <div class="card" data-aos="fade-left">
+                <h3>Vitals</h3>
+                <div style="margin-top: 2rem;">
+                    <p style="color: var(--diamond-blue); font-family: var(--mono);">AGE: 25</p>
+                    <p style="color: var(--diamond-blue); font-family: var(--mono);">EXP: 2 YEARS</p>
+                    <p style="margin-top: 1rem; opacity: 0.6;">SQL: EXPERT</p>
+                    <p style="opacity: 0.6;">PYTHON: SENIOR</p>
+                    <p style="opacity: 0.6;">CLOUD: AWS / AZURE</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="skills-infinite">
+            <div class="scroll-text">
+                &nbsp; PYTHON • SQL • APACHE SPARK • KAFKA • AIRFLOW • AWS S3 • REDSHIFT • SNOWFLAKE • DBT • DOCKER • KUBERNETES • ETL AUTOMATION • DATA LAKES • &nbsp;
+            </div>
+            <div class="scroll-text">
+                &nbsp; PYTHON • SQL • APACHE SPARK • KAFKA • AIRFLOW • AWS S3 • REDSHIFT • SNOWFLAKE • DBT • DOCKER • KUBERNETES • ETL AUTOMATION • DATA LAKES • &nbsp;
+            </div>
+        </div>
+
+        <section style="margin-top: 8rem;">
+            <h2 class="section-header">EXPERIENCE</h2>
+            <div class="exp-row" data-aos="fade-up">
+                <div style="font-family: var(--mono); color: var(--diamond-blue);">2021 — 2023</div>
+                <div>
+                    <h3 style="font-size: 1.5rem;">Data Analyst / Engineer</h3>
+                    <p style="opacity: 0.6;">Enterprise IT Solutions Sector</p>
+                    <p style="margin-top: 0.5rem;">Automated complex ETL workflows and optimized warehouse performance to handle TB-scale datasets.</p>
+                </div>
+                <div style="text-align: right; opacity: 0.6;">2 Years Tenure</div>
+            </div>
+            <div class="exp-row" data-aos="fade-up" data-aos-delay="100">
+                <div style="font-family: var(--mono); color: var(--diamond-blue);">2024 — 2026</div>
+                <div>
+                    <h3 style="font-size: 1.5rem;">Freelance Data Architect</h3>
+                    <p style="opacity: 0.6;">Specialized Infrastructure Consulting</p>
+                    <p style="margin-top: 0.5rem;">Consulting on cloud-native migrations and real-time streaming infrastructure.</p>
+                </div>
+                <div style="text-align: right; opacity: 0.6;">Active</div>
+            </div>
+        </section>
+
+        <section style="margin-top: 8rem;">
+            <h2 class="section-header">PRODUCTION_PROJECTS</h2>
+            <div class="grid-master">
+                <div class="card span-2" data-aos="zoom-in">
+                    <h3>01 / Real-time Pipeline</h3>
+                    <h2>Global Finance Ledger</h2>
+                    <p>Built a 100ms latency ingestion engine using Kafka and Spark for real-time transaction monitoring and anomaly detection.</p>
+                    <div class="project-tag">KAFKA</div><div class="project-tag">PYSPARK</div><div class="project-tag">SCALA</div>
+                </div>
+                <div class="card span-2" data-aos="zoom-in" data-aos-delay="100">
+                    <h3>02 / Optimization</h3>
+                    <h2>Query Performance Engine</h2>
+                    <p>Redesigned SQL warehouse schemas and partitioning strategies, reducing compute costs by 40%.</p>
+                    <div class="project-tag">SNOWFLAKE</div><div class="project-tag">DBT</div><div class="project-tag">SQL</div>
+                </div>
+            </div>
+        </section>
+
+        <section style="margin-top: 8rem;">
+            <h2 class="section-header">EDUCATION</h2>
+            <div class="card span-12" data-aos="fade-up">
+                <h3>Degree Specification</h3>
+                <h2>Bachelor of Computer Science / IT</h2>
+                <p style="opacity: 0.7; margin-top: 1rem;">Focused on Database Management Systems (DBMS), Distributed Computing, and Algorithm Design. Class of 2021.</p>
+            </div>
+        </section>
+
+        <section class="contact-grid" id="contact" data-aos="fade-up">
+            <div>
+                <h2 style="font-size: 4rem; line-height: 1;">LET'S BUILD <br><span style="color: var(--diamond-blue);">THE FUTURE.</span></h2>
+                <p style="margin-top: 2rem; opacity: 0.7;">Currently open for Data Engineering opportunities in Dubai, Singapore, or Remote.</p>
+                <div style="margin-top: 2rem; font-family: var(--mono);">
+                    <p><i class="fas fa-envelope"></i> your.email@example.com</p>
+                </div>
+            </div>
+            <form action="https://formspree.io/f/your-id-here" method="POST">
+                <input type="text" name="name" placeholder="YOUR NAME" required>
+                <input type="email" name="_replyto" placeholder="YOUR EMAIL" required>
+                <textarea name="message" rows="5" placeholder="TELL ME ABOUT YOUR PROJECT" required></textarea>
+                <button type="submit" class="submit-btn">Initialize Connection</button>
+            </form>
+        </section>
+
+        <footer>
+            <div style="margin-bottom: 2rem; font-size: 1.5rem;">
+                <a href="https://linkedin.com/in/vignesh-raveendran" style="color: var(--diamond-blue); margin: 0 15px;"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/vignesh-raveendran" style="color: var(--diamond-blue); margin: 0 15px;"><i class="fab fa-github"></i></a>
+            </div>
+            <p>© 2026 VIGNESH RAVEENDRAN • DESIGNED FOR PERFORMANCE</p>
+        </footer>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        // Diamond Loader Logic
+        const logs = [
+            "SCANNING_CORE_OS...",
+            "LOADING_SQL_DRIVERS...",
+            "CONNECTING_DATA_LAKE...",
+            "INITIALIZING_VIGNESH_RAVEENDRAN...",
+            "SYSTEM_ONLINE."
+        ];
+        let logIndex = 0;
+        const logEl = document.getElementById('log');
+
+        const interval = setInterval(() => {
+            logEl.textContent = logs[logIndex];
+            logIndex++;
+            if (logIndex >= logs.length) {
+                clearInterval(interval);
+                setTimeout(() => {
+                    document.getElementById('loader').style.transform = 'translateY(-100%)';
+                    document.getElementById('loader').style.transition = '1s cubic-bezier(0.85, 0, 0.15, 1)';
+                }, 500);
+            }
+        }, 350);
+
+        // Pipeline Visualizer Injection
+        const container = document.getElementById('stream-container');
+        for (let i = 0; i < 15; i++) {
+            const line = document.createElement('div');
+            line.className = 'stream-line';
+            line.style.top = Math.random() * 100 + '%';
+            line.style.animationDelay = Math.random() * 2 + 's';
+            line.style.opacity = Math.random();
+            container.appendChild(line);
+        }
+    </script>
+</body>
+</html>
