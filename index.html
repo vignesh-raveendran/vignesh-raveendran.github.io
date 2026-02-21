@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vignesh Raveendran | Diamond Data Architect</title>
+    <title>Vignesh Raveendran | Analytics Engineer</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@200;800&family=JetBrains+Mono:wght@300;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -55,6 +55,7 @@
             color: var(--text); margin-left: 20px; font-size: 1.2rem; transition: 0.3s;
         }
         .social-nav a:hover { color: var(--diamond-blue); }
+        .social-nav a.resume-icon { color: var(--diamond-blue); }
 
         /* Hero Section */
         .hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; }
@@ -76,15 +77,18 @@
 
         /* Bento Grid Architecture */
         .grid-master { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin: 5rem 0; }
+        
         .card {
             background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);
             padding: 2.5rem; border-radius: 30px; position: relative; overflow: hidden;
             transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            text-decoration: none; color: inherit; display: block;
         }
         .card:hover { background: rgba(255,255,255,0.04); border-color: var(--diamond-blue); transform: translateY(-5px); }
         .card h2 { font-size: 2.2rem; margin-bottom: 1rem; }
         .card h3 { font-family: var(--mono); color: var(--diamond-blue); font-size: 0.9rem; margin-bottom: 0.5rem; text-transform: uppercase; }
 
+        .span-4 { grid-column: span 4; }
         .span-3 { grid-column: span 3; }
         .span-2 { grid-column: span 2; }
 
@@ -102,20 +106,23 @@
         
         .exp-row {
             padding: 2.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);
-            display: grid; grid-template-columns: 1fr 2fr 1fr; align-items: center; transition: 0.3s;
+            display: grid; grid-template-columns: 1fr 2fr 1fr; align-items: flex-start; transition: 0.3s;
         }
         .exp-row:hover { background: rgba(255,255,255,0.02); padding-left: 20px; }
+        .exp-desc { margin-top: 0.8rem; opacity: 0.7; font-size: 0.95rem; line-height: 1.6; }
 
-        /* Contact Section */
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin: 10rem 0; }
+        /* Buttons & Forms - Updated margins here to reduce footer gap */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin: 10rem 0 3rem 0; }
         input, textarea {
             width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); 
             padding: 1.5rem; color: white; border-radius: 15px; margin-bottom: 1rem; font-family: var(--mono);
         }
         input:focus, textarea:focus { outline: none; border-color: var(--diamond-blue); }
+        
         .submit-btn {
             background: var(--diamond-blue); color: black; border: none; padding: 1.5rem 3rem; 
             border-radius: 50px; font-weight: 800; cursor: pointer; text-transform: uppercase; transition: 0.3s;
+            display: inline-block; text-decoration: none; text-align: center;
         }
         .submit-btn:hover { box-shadow: 0 0 30px var(--diamond-blue); transform: scale(1.05); }
 
@@ -124,11 +131,19 @@
             border-radius: 50px; font-size: 0.7rem; font-family: var(--mono); margin-right: 8px; margin-top: 10px;
         }
 
-        footer { padding: 5rem 0; text-align: center; opacity: 0.4; font-family: var(--mono); font-size: 0.8rem; }
+        /* Hint icon for project cards */
+        .card-link-icon {
+            position: absolute; top: 2.5rem; right: 2.5rem; opacity: 0; transform: translate(-10px, 10px);
+            transition: 0.3s; color: var(--diamond-blue); font-size: 1.2rem;
+        }
+        .card:hover .card-link-icon { opacity: 1; transform: translate(0, 0); }
+
+        /* Updated padding here to reduce footer gap */
+        footer { padding: 1rem 0 4rem 0; text-align: center; opacity: 0.4; font-family: var(--mono); font-size: 0.8rem; }
 
         @media (max-width: 900px) {
             .grid-master, .contact-grid { grid-template-columns: 1fr; }
-            .span-3, .span-2 { grid-column: span 1; }
+            .span-4, .span-3, .span-2 { grid-column: span 1; }
             .exp-row { grid-template-columns: 1fr; gap: 1rem; }
         }
     </style>
@@ -143,23 +158,26 @@
 
     <div class="container">
         <nav>
-            <div class="logo-box">VR_ARCHITECT</div>
+            <div class="logo-box">VR_ANALYTICS</div>
             <div class="social-nav">
-                <a href="https://linkedin.com/in/vignesh-raveendran" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="Vignesh-Raveendran.pdf" target="_blank" title="Download Resume" class="resume-icon"><i class="fas fa-file-pdf"></i></a>
+                <a href="https://linkedin.com/in/vignesh-rv" target="_blank"><i class="fab fa-linkedin"></i></a>
                 <a href="https://github.com/vignesh-raveendran" target="_blank"><i class="fab fa-github"></i></a>
             </div>
         </nav>
 
         <section class="hero">
-            <div class="hero-label">DATA_ENGINEERING_CORE_v2.0</div>
+            <div class="hero-label">ANALYTICS_ENGINEERING_CORE</div>
             <h1 data-aos="fade-up">VIGNESH <br> RAVEENDRAN</h1>
             <div class="hero-flex">
-                <p style="max-width: 500px; opacity: 0.7; font-size: 1.3rem;">
-                    Solving high-scale data problems with 2 years of pure IT experience. I architect resilient pipelines that bridge the gap between raw data and business intelligence.
-                </p>
+                <div>
+                    <p style="max-width: 550px; opacity: 0.7; font-size: 1.3rem;">
+                        Detail-oriented Analytics Engineer specializing in modern data stacks, scalable cloud pipelines, and advanced business intelligence. I transform complex raw data into strategic, actionable assets.
+                    </p>
+                </div>
                 <div style="font-family: var(--mono); text-align: right; color: var(--diamond-blue);">
-                    <div>LOCATION: GLOBAL / REMOTE</div>
-                    <div>STATUS: AVAILABLE_FOR_IMPACT</div>
+                    <div>LOCATION: BENGALURU, INDIA</div>
+                    <div>STATUS: READY_FOR_DEPLOYMENT</div>
                 </div>
             </div>
         </section>
@@ -167,103 +185,145 @@
         <div class="grid-master">
             <div class="card span-3" data-aos="fade-right">
                 <h3>01 / Executive Summary</h3>
-                <h2>Precision in Data Engineering.</h2>
+                <h2>Precision in Analytics Engineering.</h2>
                 <div class="data-visualizer" id="stream-container"></div>
-                <p style="margin-top: 1.5rem; opacity: 0.7;">Experienced professional with a 2-year foundation in IT systems. Specializing in the development, optimization, and scaling of automated ETL workflows and robust data architectures.</p>
+                <p style="margin-top: 1.5rem; opacity: 0.7;">An accomplished Analytics Engineer with a proven track record of designing end-to-end data workflows, from robust ETL pipelines to enterprise-grade business intelligence solutions. I specialize in bridging the gap between raw data and executive decision-making, leveraging modern cloud infrastructures like Snowflake and BigQuery alongside transformation tools like dbt to drive scalable, high-performance analytics.</p>
             </div>
             
             <div class="card" data-aos="fade-left">
                 <h3>Vitals</h3>
                 <div style="margin-top: 2rem;">
-                    <p style="color: var(--diamond-blue); font-family: var(--mono);">AGE: 25</p>
-                    <p style="color: var(--diamond-blue); font-family: var(--mono);">EXP: 2 YEARS</p>
-                    <p style="margin-top: 1rem; opacity: 0.6;">SQL: EXPERT</p>
-                    <p style="opacity: 0.6;">PYTHON: SENIOR</p>
-                    <p style="opacity: 0.6;">CLOUD: AWS / AZURE</p>
+                    <p style="color: var(--diamond-blue); font-family: var(--mono); margin-bottom: 0.5rem;">ROLE: ANALYTICS ENGINEER</p>
+                    <p style="color: var(--diamond-blue); font-family: var(--mono); margin-bottom: 1.5rem;">EXP: 2+ YEARS</p>
+                    <p style="opacity: 0.7; font-size: 0.85rem; margin-top: 0.5rem;"><strong>CORE:</strong> PYTHON, ADV. SQL</p>
+                    <p style="opacity: 0.7; font-size: 0.85rem; margin-top: 0.5rem;"><strong>MODELING:</strong> DBT, STAR SCHEMA</p>
+                    <p style="opacity: 0.7; font-size: 0.85rem; margin-top: 0.5rem;"><strong>BI & VIZ:</strong> POWER BI (DAX), TABLEAU</p>
+                    <p style="opacity: 0.7; font-size: 0.85rem; margin-top: 0.5rem;"><strong>CLOUD:</strong> SNOWFLAKE, BIGQUERY</p>
+                    <p style="opacity: 0.7; font-size: 0.85rem; margin-top: 0.5rem;"><strong>ETL/PIPELINE:</strong> SPARK, AIRFLOW</p>
+                    <p style="opacity: 0.7; font-size: 0.85rem; margin-top: 0.5rem;"><strong>DOMAIN:</strong> IBP, SUPPLY CHAIN</p>
                 </div>
             </div>
         </div>
 
         <div class="skills-infinite">
             <div class="scroll-text">
-                &nbsp; PYTHON • SQL • APACHE SPARK • KAFKA • AIRFLOW • AWS S3 • REDSHIFT • SNOWFLAKE • DBT • DOCKER • KUBERNETES • ETL AUTOMATION • DATA LAKES • &nbsp;
+                &nbsp; PYTHON • SQL • POWER BI • TABLEAU • DBT • SNOWFLAKE • BIGQUERY • APACHE SPARK • AIRFLOW • SCM & IBP • DATA MODELING • ETL ARCHITECTURE • GIT • &nbsp;
             </div>
             <div class="scroll-text">
-                &nbsp; PYTHON • SQL • APACHE SPARK • KAFKA • AIRFLOW • AWS S3 • REDSHIFT • SNOWFLAKE • DBT • DOCKER • KUBERNETES • ETL AUTOMATION • DATA LAKES • &nbsp;
+                &nbsp; PYTHON • SQL • POWER BI • TABLEAU • DBT • SNOWFLAKE • BIGQUERY • APACHE SPARK • AIRFLOW • SCM & IBP • DATA MODELING • ETL ARCHITECTURE • GIT • &nbsp;
             </div>
         </div>
 
         <section style="margin-top: 8rem;">
-            <h2 class="section-header">EXPERIENCE</h2>
-            <div class="exp-row" data-aos="fade-up">
-                <div style="font-family: var(--mono); color: var(--diamond-blue);">2021 — 2023</div>
-                <div>
-                    <h3 style="font-size: 1.5rem;">Data Analyst / Engineer</h3>
-                    <p style="opacity: 0.6;">Enterprise IT Solutions Sector</p>
-                    <p style="margin-top: 0.5rem;">Automated complex ETL workflows and optimized warehouse performance to handle TB-scale datasets.</p>
-                </div>
-                <div style="text-align: right; opacity: 0.6;">2 Years Tenure</div>
-            </div>
-            <div class="exp-row" data-aos="fade-up" data-aos-delay="100">
-                <div style="font-family: var(--mono); color: var(--diamond-blue);">2024 — 2026</div>
-                <div>
-                    <h3 style="font-size: 1.5rem;">Freelance Data Architect</h3>
-                    <p style="opacity: 0.6;">Specialized Infrastructure Consulting</p>
-                    <p style="margin-top: 0.5rem;">Consulting on cloud-native migrations and real-time streaming infrastructure.</p>
-                </div>
-                <div style="text-align: right; opacity: 0.6;">Active</div>
+            <h2 class="section-header">PRODUCTION_PROJECTS</h2>
+            <div class="grid-master" style="margin-top: 0;">
+                
+                <a href="https://github.com/vignesh-raveendran/AIRBNB_AWS_DBT_SNOWFLAKE_DATA_ENGINEER_PROJECT.git" target="_blank" class="card span-2" data-aos="zoom-in">
+                    <i class="fas fa-arrow-up-right-from-square card-link-icon"></i>
+                    <h3>01 / Medallion Architecture</h3>
+                    <h2>Airbnb Cloud Data Pipeline</h2>
+                    <p>Designed an end-to-end Medallion pipeline ingesting S3 data into Snowflake. Built modular dbt models with incremental materializations, SCD Type 2 snapshots, and data quality tests.</p>
+                    <div class="project-tag">SNOWFLAKE</div><div class="project-tag">DBT</div><div class="project-tag">AWS S3</div><div class="project-tag">PYTHON</div>
+                </a>
+                
+                <a href="https://github.com/vignesh-raveendran/Renewable-Energy-Analytics-Platform-AWS-S3-Snowflake-Tableau-.git" target="_blank" class="card span-2" data-aos="zoom-in" data-aos-delay="100">
+                    <i class="fas fa-arrow-up-right-from-square card-link-icon"></i>
+                    <h3>02 / Cloud Ingestion</h3>
+                    <h2>Global Energy Analytics Platform</h2>
+                    <p>Implemented cloud ingestion pipelines using IAM roles and COPY INTO for large-scale data loading. Modeled transformations and built interactive Tableau dashboards to analyze consumption trends.</p>
+                    <div class="project-tag">AWS S3</div><div class="project-tag">SNOWFLAKE</div><div class="project-tag">TABLEAU</div><div class="project-tag">SQL</div>
+                </a>
+
+                <a href="https://github.com/vignesh-raveendran/Cloud-Native-Housing-Market-Analytics-Platform-BigQuery-Power-BI-.git" target="_blank" class="card span-2" data-aos="zoom-in">
+                    <i class="fas fa-arrow-up-right-from-square card-link-icon"></i>
+                    <h3>03 / Dimensional Modeling</h3>
+                    <h2>Housing Market BI Dashboard</h2>
+                    <p>Integrated BigQuery with Power BI to develop dimensional models and interactive dashboards. Engineered advanced DAX measures (time intelligence, MEDIANX) for YoY regional price analysis.</p>
+                    <div class="project-tag">BIGQUERY</div><div class="project-tag">POWER BI</div><div class="project-tag">DAX</div>
+                </a>
+
+                <a href="https://github.com/vignesh-raveendran/LOAN_DEFAULT_RISK_ANALYSIS_WITH_POWER_BI_GATEWAY_INCREMENTAL_REFRESH.git" target="_blank" class="card span-2" data-aos="zoom-in" data-aos-delay="100">
+                    <i class="fas fa-arrow-up-right-from-square card-link-icon"></i>
+                    <h3>04 / Incremental Refresh</h3>
+                    <h2>Loan Default Risk Dashboard</h2>
+                    <p>Processed 250,000+ financial records using Dataflows and incremental refresh architecture. Developed advanced DAX calculations (YOY, YTD) to identify high-risk default segments.</p>
+                    <div class="project-tag">POWER BI</div><div class="project-tag">DATAFLOWS</div><div class="project-tag">DAX</div>
+                </a>
+
+                <a href="https://github.com/vignesh-raveendran/SALES_PRODUCT_ANALYSIS_WITH_END_TO_END_DATA_MODELING_KPIs_and_TREND_INSIGHTS.git" target="_blank" class="card span-4" data-aos="zoom-in">
+                    <i class="fas fa-arrow-up-right-from-square card-link-icon"></i>
+                    <h3>05 / Automated Reporting</h3>
+                    <h2>Sales & Product Analytics Model</h2>
+                    <p>Designed a Star Schema dimensional model and automated dashboard replacing manual reporting. Built dynamic DAX measures using USERELATIONSHIP to uncover seasonal revenue trends.</p>
+                    <div class="project-tag">POWER BI</div><div class="project-tag">STAR SCHEMA</div><div class="project-tag">DAX</div>
+                </a>
+
             </div>
         </section>
 
         <section style="margin-top: 8rem;">
-            <h2 class="section-header">PRODUCTION_PROJECTS</h2>
-            <div class="grid-master">
-                <div class="card span-2" data-aos="zoom-in">
-                    <h3>01 / Real-time Pipeline</h3>
-                    <h2>Global Finance Ledger</h2>
-                    <p>Built a 100ms latency ingestion engine using Kafka and Spark for real-time transaction monitoring and anomaly detection.</p>
-                    <div class="project-tag">KAFKA</div><div class="project-tag">PYSPARK</div><div class="project-tag">SCALA</div>
+            <h2 class="section-header">EXPERIENCE</h2>
+            
+            <div class="exp-row" data-aos="fade-up">
+                <div style="font-family: var(--mono); color: var(--diamond-blue); margin-top: 5px;">Jun 2021 — Feb 2023</div>
+                <div>
+                    <h3 style="font-size: 1.5rem;">Consultant / Analytics Engineer</h3>
+                    <p style="color: var(--diamond-blue); font-family: var(--mono); font-size: 0.85rem; margin-top: 5px;">o9 Solutions, Bengaluru</p>
+                    <p class="exp-desc">Spearheaded the deployment and optimization of enterprise-grade Supply Chain Management (IBP) solutions for global clients. Designed and maintained complex data models, automated high-volume ETL workflows, and significantly improved query performance by refining underlying data structures. Collaborated directly with cross-functional stakeholders to translate business requirements into advanced, executive-facing BI dashboards, establishing reliable single-source-of-truth reporting for key supply chain metrics.</p>
                 </div>
-                <div class="card span-2" data-aos="zoom-in" data-aos-delay="100">
-                    <h3>02 / Optimization</h3>
-                    <h2>Query Performance Engine</h2>
-                    <p>Redesigned SQL warehouse schemas and partitioning strategies, reducing compute costs by 40%.</p>
-                    <div class="project-tag">SNOWFLAKE</div><div class="project-tag">DBT</div><div class="project-tag">SQL</div>
+                <div style="text-align: right; opacity: 0.6; margin-top: 5px;">1 Yr 9 Mos</div>
+            </div>
+
+            <div class="exp-row" data-aos="fade-up" data-aos-delay="100">
+                <div style="font-family: var(--mono); color: var(--diamond-blue); margin-top: 5px;">Nov 2023 — Sept 2024</div>
+                <div>
+                    <h3 style="font-size: 1.5rem;">Freelance Analytics Engineer</h3>
+                    <p style="color: var(--diamond-blue); font-family: var(--mono); font-size: 0.85rem; margin-top: 5px;">Independent Consulting</p>
+                    <p class="exp-desc">Architected scalable cloud data pipelines leveraging dbt, Airflow, and modern data warehouses. Designed interactive market analytics and risk assessment dashboards, ensuring high data reliability, automating data transformations, and empowering clients with real-time actionable intelligence.</p>
                 </div>
+                <div style="text-align: right; opacity: 0.6; margin-top: 5px;">10 Months</div>
             </div>
         </section>
 
         <section style="margin-top: 8rem;">
             <h2 class="section-header">EDUCATION</h2>
-            <div class="card span-12" data-aos="fade-up">
-                <h3>Degree Specification</h3>
-                <h2>Bachelor of Computer Science / IT</h2>
-                <p style="opacity: 0.7; margin-top: 1rem;">Focused on Database Management Systems (DBMS), Distributed Computing, and Algorithm Design. Class of 2021.</p>
+            <div class="grid-master" style="margin-top: 0;">
+                <div class="card span-2" data-aos="fade-up">
+                    <h3>2025 — 2026 (Ongoing)</h3>
+                    <h2>MBA in AI & Data Science</h2>
+                    <p style="opacity: 0.7; margin-top: 1rem;">SRM Institute of Science & Technology, Chennai.</p>
+                </div>
+                <div class="card span-2" data-aos="fade-up" data-aos-delay="100">
+                    <h3>2017 — 2021</h3>
+                    <h2>B.E. in Electronics & Communication Engineering</h2>
+                    <p style="opacity: 0.7; margin-top: 1rem;">PSG College of Technology, Coimbatore.</p>
+                </div>
             </div>
         </section>
 
         <section class="contact-grid" id="contact" data-aos="fade-up">
             <div>
-                <h2 style="font-size: 4rem; line-height: 1;">LET'S BUILD <br><span style="color: var(--diamond-blue);">THE FUTURE.</span></h2>
-                <p style="margin-top: 2rem; opacity: 0.7;">Currently open for Data Engineering opportunities in Dubai, Singapore, or Remote.</p>
+                <h2 style="font-size: 4rem; line-height: 1;">ARCHITECTING <br><span style="color: var(--diamond-blue);">INTELLIGENCE.</span></h2>
+                <p style="margin-top: 2rem; opacity: 0.7;">Currently open for Analytics Engineering opportunities in Bengaluru, remote, or globally.</p>
                 <div style="margin-top: 2rem; font-family: var(--mono);">
-                    <p><i class="fas fa-envelope"></i> your.email@example.com</p>
+                 <p><i class="fas fa-globe"></i> Based in Bengaluru</p>
+                 <p style="margin-top: 10px;"><i class="fas fa-envelope"></i> Awaiting your query...</p>   
                 </div>
             </div>
-            <form action="https://formspree.io/f/your-id-here" method="POST">
+            <form action="https://formspree.io/f/xkovqgpy" method="POST">
                 <input type="text" name="name" placeholder="YOUR NAME" required>
                 <input type="email" name="_replyto" placeholder="YOUR EMAIL" required>
-                <textarea name="message" rows="5" placeholder="TELL ME ABOUT YOUR PROJECT" required></textarea>
+                <textarea name="message" rows="5" placeholder="TELL ME ABOUT YOUR DATA NEEDS" required></textarea>
                 <button type="submit" class="submit-btn">Initialize Connection</button>
             </form>
         </section>
 
         <footer>
             <div style="margin-bottom: 2rem; font-size: 1.5rem;">
-                <a href="https://linkedin.com/in/vignesh-raveendran" style="color: var(--diamond-blue); margin: 0 15px;"><i class="fab fa-linkedin"></i></a>
+                <a href="https://linkedin.com/in/vignesh-rv" style="color: var(--diamond-blue); margin: 0 15px;"><i class="fab fa-linkedin"></i></a>
                 <a href="https://github.com/vignesh-raveendran" style="color: var(--diamond-blue); margin: 0 15px;"><i class="fab fa-github"></i></a>
             </div>
-            <p>© 2026 VIGNESH RAVEENDRAN • DESIGNED FOR PERFORMANCE</p>
+            <p>© 2026 VIGNESH RAVEENDRAN • ENGINEERED FOR SCALE</p>
         </footer>
     </div>
 
@@ -275,7 +335,7 @@
         const logs = [
             "SCANNING_CORE_OS...",
             "LOADING_SQL_DRIVERS...",
-            "CONNECTING_DATA_LAKE...",
+            "CONNECTING_DATA_WAREHOUSE...",
             "INITIALIZING_VIGNESH_RAVEENDRAN...",
             "SYSTEM_ONLINE."
         ];
