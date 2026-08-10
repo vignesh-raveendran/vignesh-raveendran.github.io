@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Time With You</title>
+<meta name="theme-color" content="#f8c6d8">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+ margin:0;color:#673449;background:#fff7fa;
+ font-family:"Georgia","Times New Roman",serif;overflow-x:hidden
+}
+body:before{
+ content:"";position:fixed;inset:0;pointer-events:none;z-index:5;opacity:.32;
+ background-image:radial-gradient(#e8a6bf 1px,transparent 1px);
+ background-size:28px 28px
+}
+.petals{position:fixed;inset:0;pointer-events:none;z-index:4;overflow:hidden}
+.petal{position:absolute;top:-30px;color:#e7a2ba;opacity:.5;animation:fall linear infinite}
+@keyframes fall{to{transform:translateY(110vh) rotate(240deg)}}
+section{min-height:100vh;padding:60px 18px;display:flex;align-items:center;justify-content:center}
+.hero{
+ position:relative;text-align:center;
+ background:
+  radial-gradient(circle at 50% 25%,rgba(255,255,255,.95),transparent 38%),
+  linear-gradient(145deg,#fff8fb,#ffe5ef 48%,#fbd1e1)
+}
+.hero:after{
+ content:"";position:absolute;width:360px;height:360px;border-radius:50%;
+ border:1px solid rgba(210,92,137,.16);top:50%;left:50%;
+ transform:translate(-50%,-42%)
+}
+.hero-inner{position:relative;z-index:2;max-width:720px}
+.small-title{
+ font-family:Arial,sans-serif;letter-spacing:4px;text-transform:uppercase;
+ font-size:11px;color:#c77a98;margin-bottom:24px
+}
+.flower{
+ width:72px;height:72px;margin:0 auto 18px;position:relative;
+ display:flex;align-items:center;justify-content:center;color:#d45c88;font-size:34px
+}
+.flower:before,.flower:after{
+ content:"";position:absolute;border:1px solid #e8a7bd;border-radius:50%
+}
+.flower:before{width:72px;height:42px;transform:rotate(45deg)}
+.flower:after{width:42px;height:72px;transform:rotate(45deg)}
+h1{
+ font-size:clamp(44px,11vw,82px);line-height:1.02;margin:0;
+ color:#b94672;font-weight:500;letter-spacing:-2px
+}
+.hero p{
+ font-size:20px;line-height:1.7;color:#8a5067;
+ margin:0 auto;max-width:520px
+}
+.scroll{
+ display:inline-flex;align-items:center;gap:10px;margin-top:20px;padding:13px 25px;
+ border-radius:30px;border:1px solid #dfa1b8;background:rgba(255,255,255,.7);
+ color:#a9436e;font-family:Arial,sans-serif;font-size:13px;cursor:pointer
+}
+.scroll span{font-size:18px}
+.letter-section{
+ background:linear-gradient(180deg,#fff7fa,#fff1f6 60%,#fff8fb)
+}
+.card{
+ width:min(820px,100%);background:rgba(255,255,255,.94);
+ border:1px solid #efc5d5;border-radius:34px;
+ padding:clamp(28px,5vw,58px);
+ box-shadow:0 25px 80px rgba(157,62,100,.13);
+ position:relative
+}
+.card:before,.card:after{
+ content:"";position:absolute;inset:12px;
+ border:1px solid #f5dce5;border-radius:27px;
+ pointer-events:none
+}
+.card:after{inset:18px;border:0}
+.content{position:relative;z-index:1}
+.date{
+ text-align:center;font-family:Arial,sans-serif;
+ letter-spacing:2px;font-size:11px;
+ color:#c9829e;text-transform:uppercase;margin-bottom:20px
+}
+.date-dot{
+ display:inline-block;margin:0 14px;color:#d57b9b;font-size:10px
+}
+h2{
+ color:#b74470;font-size:clamp(30px,6vw,44px);
+ font-weight:500;text-align:center;margin:0 0 30px
+}
+.letter{font-size:18px;line-height:1.95}
+.letter p{margin:0 0 22px}
+.opening{font-size:23px;color:#a43e68}
+.soft{
+ text-align:center;font-style:italic;color:#a05d79;
+ font-size:20px;padding:8px 15px 25px
+}
+.rule{height:1px;background:#f0d4df;margin:30px auto;max-width:220px}
+.plan-title{
+ text-align:center;color:#b74470;font-size:27px;margin:20px 0
+}
+.plan{
+ display:grid;grid-template-columns:repeat(4,1fr);
+ gap:10px;margin:20px 0 32px
+}
+.plan div{
+ text-align:center;padding:13px 7px;border-radius:16px;
+ background:#fff5f8;border:1px solid #f1d5df;
+ color:#8a4b65;font-family:Arial,sans-serif;font-size:13px
+}
+.quote{
+ margin:30px 0;padding:25px 20px;text-align:center;
+ border-top:1px solid #f0d4df;border-bottom:1px solid #f0d4df;
+ color:#a33d68;font-size:22px;line-height:1.7
+}
+.question{text-align:center;margin-top:30px}
+.question h3{
+ font-size:36px;color:#b43e6e;font-weight:500;margin:0 0 12px
+}
+.question p{color:#956077}
+.yes{
+ border:0;border-radius:30px;padding:16px 34px;margin-top:12px;
+ background:linear-gradient(135deg,#df6d98,#c44373);
+ color:white;font-size:16px;font-family:Arial,sans-serif;
+ font-weight:600;cursor:pointer;
+ box-shadow:0 10px 25px rgba(196,67,115,.22);transition:.2s
+}
+.yes:hover{
+ transform:translateY(-2px);
+ box-shadow:0 13px 30px rgba(196,67,115,.28)
+}
+#answer{
+ min-height:38px;margin-top:12px;color:#b43e6e;
+ font-size:20px;line-height:1.6
+}
+.signature{
+ text-align:center;color:#b85a7e;
+ margin-top:18px;font-size:19px
+}
+.footer{
+ text-align:center;font:11px Arial,sans-serif;
+ color:#c08a9f;margin-top:28px
+}
+@media(max-width:650px){
+ .plan{grid-template-columns:repeat(2,1fr)}
+ .letter{font-size:17px;line-height:1.85}
+ .card{border-radius:26px}
+ .card:before{inset:8px;border-radius:20px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="petals" id="petals"></div>
+
+<section class="hero">
+ <div class="hero-inner">
+
+  <div class="small-title">Something I wanted to ask you</div>
+
+  <div class="flower">♡</div>
+
+  <h1>Anu</h1>
+
+  <p></p>
+
+  <button class="scroll" onclick="document.getElementById('letter').scrollIntoView()">
+   Read it when you're ready <span>↓</span>
+  </button>
+
+ </div>
+</section>
+
+<section class="letter-section" id="letter">
+
+ <div class="card">
+
+  <div class="content letter">
+
+   <div class="date">
+    AUG 14 <span class="date-dot">•</span> AUG 15
+   </div>
+
+   <h2>Can I steal you away with me?</h2>
+
+   <p class="opening">Anu,</p>
+
+   <p></p>
+
+   <p>
+    <strong>
+     Can I steal you away from 6:00 PM on August 14 until 6:00 PM on August 15?
+    </strong>
+   </p>
+
+   <p>
+    I want to remember them by the little things.
+    The conversations that go on longer than we planned,
+    the laughs that come out of nowhere,
+    the quiet moments where we don't even need to say anything.
+   </p>
+
+   <div class="soft">
+    More than a perfect day, I just want a day that feels like us.
+   </div>
+
+   <div class="rule"></div>
+
+   <div class="plan-title">
+    So, what do I have in mind?
+   </div>
+
+   <div class="plan">
+    <div>You & me</div>
+    <div>A little Bangalore</div>
+    <div>Good food</div>
+    <div>Long conversations</div>
+    <div>Random walks</div>
+    <div>Favourite songs</div>
+    <div>Lots of pictures</div>
+    <div>Little memories</div>
+   </div>
+
+   <p>
+    I’ll pick you up along with the sunset that welcomes us
+    and see that smile of yours in person.
+    I want to take you somewhere nice for dinner,
+    sit beside you and let one conversation turn into five
+    because neither of us wants it to end.
+   </p>
+
+   <p>
+    Those random walks where the destination doesn't matter.
+    Just the two of us walking together and talking about everything and nothing.
+    Later we can watch our comfort movie together with munchies
+    and then sit at the terrace gazing at the stars
+    while the night quietly keeps us company.
+   </p>
+
+   <p>
+    And when the next morning comes, I want us to take it slowly.
+    Breakfast together. A little wandering around.
+    Too many pictures. Something delicious to eat.
+    Maybe a dessert we said we would share
+    and somehow end up fighting over.
+   </p>
+
+   <p></p>
+
+   <p>
+    Little pieces of happiness that we can keep for ourselves.
+   </p>
+
+   <div class="quote">
+    “Let the streets of Bangalore keep our laughter,<br>
+    let the night keep our conversations<br>
+    and let these 24 hours become one of those memories<br>
+    we smile about without even realizing it.”
+   </div>
+
+   <p>
+    Because I don't really care where we go.
+    If I'm with you, I already know I'll be exactly where I want to be.
+   </p>
+
+   <p>
+    And maybe that's what I am really asking for.
+   </p>
+
+   <p>
+    <strong>
+     Your time. Your palms and red bag in mine.
+     Your smile beside me. Your company.
+    </strong>
+   </p>
+
+   <p>
+    For one little day, let me take you away from the usual routine of this world.
+    Let me make you laugh a little more
+    and make you feel a little more safer and loved
+    while giving you a day where you don't have to think about anything
+    except enjoying yourself.
+   </p>
+
+   <p>
+    I can't promise that every minute will be perfect.
+    But I can promise that I'll be there,
+    paying attention to the little things,
+    because when it comes to you
+    those little things matter to me.
+   </p>
+
+   <p></p>
+
+   <p></p>
+
+   <div class="question">
+
+    <h3>Will you say yes?</h3>
+
+    <p></p>
+
+    <button class="yes" onclick="sayYes()">
+     Yes, let's make it ours
+    </button>
+
+    <div id="answer"></div>
+
+   </div>
+
+   <div class="signature">
+    Your’s Poetically,<br>
+    <strong>Rohan</strong>
+   </div>
+
+   <div class="footer"></div>
+
+  </div>
+
+ </div>
+
+</section>
+
+<script>
+
+function sayYes(){
+
+ const a=document.getElementById('answer');
+
+ a.innerHTML="Gotcha! I’m stealing you away ❤️";
+
+ for(let i=0;i<14;i++)
+  setTimeout(dropHeart,i*65);
+
+}
+
+function dropHeart(){
+
+ const e=document.createElement('div');
+
+ e.textContent=['♡','♥','✿'][Math.floor(Math.random()*3)];
+
+ e.style.position='fixed';
+ e.style.left=(20+Math.random()*60)+'vw';
+ e.style.top='45vh';
+ e.style.zIndex=20;
+ e.style.fontSize=(18+Math.random()*15)+'px';
+ e.style.color='#d05a85';
+
+ document.body.appendChild(e);
+
+ e.animate(
+  [
+   {
+    transform:'translateY(0) scale(1)',
+    opacity:1
+   },
+   {
+    transform:'translateY(45vh) scale(.7) rotate(160deg)',
+    opacity:0
+   }
+  ],
+  {
+   duration:1100,
+   easing:'ease-out'
+  }
+ );
+
+ setTimeout(()=>e.remove(),1150);
+
+}
+
+for(let i=0;i<15;i++){
+
+ const p=document.createElement('div');
+
+ p.className='petal';
+ p.textContent=['♡','✿','·'][i%3];
+
+ p.style.left=Math.random()*100+'%';
+ p.style.animationDuration=(8+Math.random()*9)+'s';
+ p.style.animationDelay=(-Math.random()*14)+'s';
+ p.style.fontSize=(12+Math.random()*13)+'px';
+
+ document.getElementById('petals').appendChild(p);
+
+}
+
+</script>
+
+</body>
+</html>
